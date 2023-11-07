@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234 # a senha é 1234
+    volumes:
+      - mysql_data:/var/lib/mysql 
+    networks:
+      - network1 #rede conectada
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1 #servidores MySQL arbitrarios
+    ports:
+      - "8080:80" 
+    networks:
+      - network1 #network
+
+networks:
+  network1: 
+
+volumes:
+  mysql_data:
